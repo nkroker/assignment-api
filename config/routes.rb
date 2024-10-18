@@ -11,5 +11,16 @@ Rails.application.routes.draw do
   namespace :api do
     post 'register', controller: :user_authentication, action: :register
     post 'login', controller: :user_authentication, action: :login
+
+    resources :tasks, only: [:create] do
+      member do
+        patch :complete
+        post :assign
+      end
+
+      collection do
+        get :assigned
+      end
+    end
   end
 end

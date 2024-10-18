@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
 
   private
+  def not_found
+    render json: { error: 'not_found' }, status: 404
+  end
 
   def authorize_request
     header = request.headers['Authorization']
